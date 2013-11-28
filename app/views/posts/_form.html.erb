@@ -1,0 +1,14 @@
+<%= simple_form_for(@post) do |f| %>
+  <%= f.error_notification %>
+	
+  		
+  		<div class="form-group">
+  
+    		<%= f.input :content, label: 'Write a post', input_html: { class: 'form-control'} %>
+  
+  		</div>
+
+  
+    <%= f.button :submit %>
+  
+<% end %>

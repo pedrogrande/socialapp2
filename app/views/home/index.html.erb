@@ -1,4 +1,29 @@
-<h3>Home</h3>
-<% @users.each do |user| %>
-  <p>User: <%=link_to user.name, user %></p>
-<% end %>
+<div class="row">
+	<div class="col-md-6">
+
+		<% if user_signed_in? %>
+			<h1>Welcome, <%= current_user.name %></h1>
+
+			<% if !current_user.user_profile %>
+				<%= link_to "Create your profile now", new_user_profile_path, class: 'btn btn-success' %>
+			<% end %>
+		<% end %>
+	</div>
+
+	<div class="col-md-6">
+
+	      <%= render 'posts/form' %>
+	      <hr>
+	      <% @posts.each do |post| %>
+	        <div class="panel panel-primary">
+	          <div class="panel-heading">
+	            <h4 class="panel-title"><%= post.user.name %> <small>at <%= post.created_at.to_date %></small></h4>
+	          </div>
+	          <div class="panel-body">
+	            <p><%= post.content %></p>
+	          </div>
+	        </div>
+	      <% end %>
+
+	  </div>
+  </div>

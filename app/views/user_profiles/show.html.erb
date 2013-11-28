@@ -1,0 +1,45 @@
+<h1><%= @user_profile.user.name %>'s Profile </h1>
+<div class="row">
+  <div class="col-md-6">
+
+      <p id="notice"><%= notice %></p>
+
+      <p>
+        <strong>Profile pic:</strong>
+        <%= image_tag @user_profile.profile_pic, class: 'profile-pic' %>
+      </p>
+
+      <p>
+        <strong>Facebook:</strong>
+        <%= @user_profile.facebook %>
+      </p>
+
+      <p>
+        <strong>Twitter:</strong>
+        <%= link_to @user_profile.twitter, 'http://twitter.com/' + @user_profile.twitter %>
+      </p>
+
+      <p>
+        <strong>Bio:</strong>
+        <%= @user_profile.bio %>
+      </p>
+
+  </div>
+  <div class="col-md-6">
+
+      <%= render 'posts/form' %>
+      <hr>
+      <% @user_profile.user.posts.each do |post| %>
+        <div class="panel panel-primary">
+          <div class="panel-heading">
+            <h4 class="panel-title"><%= post.user.name %> <small>at <%= post.created_at.strftime("%H:%M, %d %b %Y") %></small></h4>
+          </div>
+          <div class="panel-body">
+            <p><%= post.content %></p>
+          </div>
+        </div>
+      <% end %>
+
+  </div>
+</div>
+<%= link_to 'Edit', edit_user_profile_path(@user_profile), class: 'btn btn-primary' %> 
